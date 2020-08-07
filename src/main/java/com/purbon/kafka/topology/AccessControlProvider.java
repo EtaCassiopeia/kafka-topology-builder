@@ -5,6 +5,7 @@ import com.purbon.kafka.topology.model.users.Connector;
 import com.purbon.kafka.topology.model.users.SchemaRegistry;
 import com.purbon.kafka.topology.roles.TopologyAclBinding;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -35,4 +36,8 @@ public interface AccessControlProvider {
       throws ConfigurationException;
 
   List<TopologyAclBinding> setAclsForControlCenter(String principal, String appId);
+
+  default List<TopologyAclBinding> setSchemaAuthorization(String principal, List<String> subjects) {
+    return new ArrayList<>();
+  }
 }
